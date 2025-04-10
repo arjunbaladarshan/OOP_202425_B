@@ -1,1 +1,4 @@
 this is demo file modified
+this is new line
+this is the third line of the file
+and this is the last line of the file

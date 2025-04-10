@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.*;
 
 public class DemoThis {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String absents = "";
+		ArrayList<Integer> absents = new ArrayList<Integer>();
 
 		double spi = 12.3;
 
@@ -16,7 +18,7 @@ public class DemoThis {
 				}
 				System.out.println("");
 				if(present==0) {
-					absents += i +", ";
+					absents.add(i);
 				}
 			}
 			catch(Exception e){
@@ -27,6 +29,30 @@ public class DemoThis {
 			
 			
 		}
-		System.out.println(absents);
+		while(true){
+			System.out.println("Current = "+absents);
+			System.out.println("Enter 1 if ok\nEnter 2 to change");
+			int choice = sc.nextInt();
+			if(choice==1){
+				try{
+					PrintWriter pw = new PrintWriter(new File("AbsentStudent.txt"));
+					pw.println(absents.toString());
+					pw.close();
+				}catch(Exception e){}
+				break;
+			}
+			else if(choice==2){
+				System.out.println("Enter 1 to mark present\nEnter 2 to mark Absent");
+				int choiceInner = sc.nextInt();
+				System.out.println("Enter Rollno");
+				Integer temp = sc.nextInt();
+				if(choiceInner==1){
+					absents.remove(temp);
+				}
+				else if(choiceInner==2){
+					absents.add(temp);
+				}
+			}
+		}
 	}
 }
